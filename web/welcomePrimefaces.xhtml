@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <f:view contentType="text/html">
+        <h:head>
+            <f:facet name="first">
+                <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+                <title>PrimeFaces</title>
+            </f:facet>
+        </h:head>
+
+        <h:body>
+            <h:form id ="form1">
+                <p:layout fullPage="true">
+
+                    <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                        Header
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="south" size="100" closable="true" collapsible="true">
+                        Footer
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="west" size="175" header="Left" collapsible="true">
+                        <p:menu>
+                            <p:submenu label="Resources">
+                                <p:menuitem value="Demo" url="http://www.primefaces.org/showcase-labs/ui/home.jsf" />
+                                <p:menuitem value="Documentation" url="http://www.primefaces.org/documentation.html" />
+                                <p:menuitem value="Forum" url="http://forum.primefaces.org/" />
+                                <p:menuitem value="Themes" url="http://www.primefaces.org/themes.html" />
+
+                            </p:submenu>
+
+                        </p:menu>
+                    </p:layoutUnit>
+
+                    <p:layoutUnit position="center">
+                        Welcome to PrimeFaces
+                        <br/>
+                        <p:outputLabel  value="charles application" ></p:outputLabel>
+                        <br/>
+                        <p:inputText id = "input" value ="#{docenteController.docente.nome}" label="Nome"/>
+                        <br/>
+                        <p:commandButton id = "salvarButton" update="db"  value = "Salvar" actionListener="#{docenteController.salvarDocente}" />
+                        <br/>
+                        <p:dataTable id ="db" var="item" value ="#{docenteController.docenteDatamodel}" selectionMode="single">
+
+                            <f:facet name="header">
+                                Lista de Docentes
+                            </f:facet>
+                            
+                            <p:column >
+                                <f:facet name ="header">
+                                    <p:outputLabel value="id"/>
+                                </f:facet>
+                                <p:outputLabel value="#{item.id}"/>
+                                               
+                            </p:column>
+
+                            <p:column headerText="none">
+                                <f:facet name="header">
+                                    <p:outputLabel value="Nome"/>
+                                </f:facet>
+                                <p:outputLabel value="#{item.nome}"/>
+                            </p:column>
+                                
+                        </p:dataTable>
+                            
+                            <br/>
+                    </p:layoutUnit>
+
+                </p:layout>
+            </h:form>
+        </h:body>
+
+    </f:view>
+</html>
+
